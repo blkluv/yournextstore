@@ -3,28 +3,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	/* config options here */
-	// Temporarily disable experimental features for stable build
-	reactCompiler: false, // Disable for now
-	cacheComponents: false, // Disable for now
-	
-	// Keep only essential configuration
+	reactCompiler: false, // Keep disabled for stability
+	cacheComponents: true, // ENABLE THIS for "use cache" to work
+	experimental: {
+		typedEnv: true,
+	},
 	images: {
-		remotePatterns: [
-			{ 
-				protocol: "https", 
-				hostname: "*.blob.vercel-storage.com" 
-			}
-		],
+		remotePatterns: [{ 
+			protocol: "https", 
+			hostname: "*.blob.vercel-storage.com" 
+		}],
 	},
-	
-	// Add these for stability
-	typescript: {
-		ignoreBuildErrors: false, // Set to true if TypeScript errors persist
-	},
-	eslint: {
-		ignoreDuringBuilds: true,
-	},
-	staticPageGenerationTimeout: 120,
 };
 
 export default nextConfig;
